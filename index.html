@@ -177,6 +177,8 @@ Error message and password prompt
 
 <li>2017-02-13 Search Algorithms</li>
 
+<li>2017-02-15 Bucket Sort</li>
+
 <li>2017-02-15.md Bucket Sort</li>
 
 <li>2017-02-20 Heaps</li>
@@ -185,7 +187,9 @@ Error message and password prompt
 
 <li>2017-02-27 Binary Search Trees</li>
 
-<li>2017-03-1 Dynamic Dictionary as Binary Search Tree</li>
+<li>2017-03-01 Dynamic Dictionary as Binary Search Tree</li>
+
+<li>Draft of '2017-02-15.md Bucket Sort'</li>
 
 <li>Draft of '2017-02-22'</li>
 
@@ -8680,6 +8684,95 @@ public interface PQ&lt;C extends Comparable&lt;?super C&gt;&gt; {
 }
 ```</pre>
 </div>
+<div created="20170305082828632" creator="kylefeng" modified="20170305083420832" modifier="kylefeng" tags="notes todo alg" title="2017-02-15 Bucket Sort" type="text/x-markdown" revision="0" bag="default">
+<pre>2017-02-15
+
+Bucket sort
+
+___________
+import
+
+
+Types of data structures:
+
+- Linear
+- Hierarchal (parent-child)
+  - ??
+- Network
+  - Multiple forms of connectivities
+  - Graphs: w/ edges and nodes
+
+Binary trees:
+
+- At most 2 children: 0, 1, or 2 children
+- Root: topmost node
+- Depth: distance from root to node
+
+Binary tree linked list implementation:
+
+```
+/* Binary tree node */
+class BTNode&lt;C&gt; {
+    C data;
+    BTNode&lt;C&gt; left;
+    BTNode&lt;C&gt; right;
+    BTNode(C d, BTNode&lt;C&gt; l, BDNode&lt;C&gt; r) {
+        data = d;
+        left = l;
+        right = r;
+    }
+}
+```
+
+```
+/* Make this tree:
+       5 (Root)
+      / \
+     3   8
+ */
+BTNode&lt;Integer&gt; tree1 = null;
+tree1 = new BTNode&lt;Integer&gt;(5,
+  new BTNode&lt;Integer&gt;(3, null, null);
+  new BTNode&lt;Integer&gt;(8, null, null));
+```
+
+```
+// TODO: count
+```
+
+```
+/* Print tree */
+int printTree(BTNode&lt;C&gt; tree) {
+    /*
+     * In-order: 1-2-3
+     * Pre-order: 2-1-3
+     * Post-order: 1-3-2
+     */
+
+    if (tree == null) { return; }
+    /*1*/ printTree(tree.left);
+    /*2*/ System.out.print(tree.data);
+    /*3*/ printTree(tree.right):
+}
+```
+
+```
+/* Deep copy */
+BTNode&lt;C&gt; deepCopy(BTNode&lt;T&gt; tree1) {
+    if (tree1 == null) { return null; }
+    return new BTNode&lt;T&gt;(tree1.data,
+      deepCopy(tree1.left),
+      deepCopy(tree2.right));
+}
+```
+
+Binary tree array implementation:
+
+_______ TODO
+root at `?` `0`
+children at `? + i?` `2*i` and `2*i + 1`
+</pre>
+</div>
 <div created="20170305082828632" creator="kylefeng" modified="20170305083035232" modifier="kylefeng" tags="notes todo alg" title="2017-02-15.md Bucket Sort" type="text/x-markdown" revision="0" bag="default">
 <pre>2017-02-15
 
@@ -8900,7 +8993,7 @@ Insertion and find are $\log(N)$
 |contains   | O(n)  | O(log N) |
 |remove     | O(n)  | O(log N) |</pre>
 </div>
-<div created="20170301140916310" creator="kylefeng" modified="20170305082342912" modifier="kylefeng" tags="adt bst notes" title="2017-03-1 Dynamic Dictionary as Binary Search Tree" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170301140916310" creator="kylefeng" modified="20170305083601133" modifier="kylefeng" tags="adt bst notes" title="2017-03-01 Dynamic Dictionary as Binary Search Tree" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>* `insert(key, data)`
 * `find(key)`
 * `remove(key)`
@@ -9021,6 +9114,95 @@ x = c ? a : b;
 
 Practice writing a recursive method that would return whether something is a binary search tree or not.</pre>
 </div>
+<div created="20170305082828632" creator="kylefeng" draft.of="2017-02-15.md Bucket Sort" draft.title="2017-02-15.md Bucket Sort" modified="20170305083417530" modifier="kylefeng" tags="notes todo alg" title="Draft of '2017-02-15.md Bucket Sort'" type="text/x-markdown" revision="0" bag="default">
+<pre>2017-02-15
+
+Bucket sort
+
+___________
+import
+
+
+Types of data structures:
+
+- Linear
+- Hierarchal (parent-child)
+  - ??
+- Network
+  - Multiple forms of connectivities
+  - Graphs: w/ edges and nodes
+
+Binary trees:
+
+- At most 2 children: 0, 1, or 2 children
+- Root: topmost node
+- Depth: distance from root to node
+
+Binary tree linked list implementation:
+
+```
+/* Binary tree node */
+class BTNode&lt;C&gt; {
+    C data;
+    BTNode&lt;C&gt; left;
+    BTNode&lt;C&gt; right;
+    BTNode(C d, BTNode&lt;C&gt; l, BDNode&lt;C&gt; r) {
+        data = d;
+        left = l;
+        right = r;
+    }
+}
+```
+
+```
+/* Make this tree:
+       5 (Root)
+      / \
+     3   8
+ */
+BTNode&lt;Integer&gt; tree1 = null;
+tree1 = new BTNode&lt;Integer&gt;(5,
+  new BTNode&lt;Integer&gt;(3, null, null);
+  new BTNode&lt;Integer&gt;(8, null, null));
+```
+
+```
+// TODO: count
+```
+
+```
+/* Print tree */
+int printTree(BTNode&lt;C&gt; tree) {
+    /*
+     * In-order: 1-2-3
+     * Pre-order: 2-1-3
+     * Post-order: 1-3-2
+     */
+
+    if (tree == null) { return; }
+    /*1*/ printTree(tree.left);
+    /*2*/ System.out.print(tree.data);
+    /*3*/ printTree(tree.right):
+}
+```
+
+```
+/* Deep copy */
+BTNode&lt;C&gt; deepCopy(BTNode&lt;T&gt; tree1) {
+    if (tree1 == null) { return null; }
+    return new BTNode&lt;T&gt;(tree1.data,
+      deepCopy(tree1.left),
+      deepCopy(tree2.right));
+}
+```
+
+Binary tree array implementation:
+
+_______ TODO
+root at `?` `0`
+children at `? + i?` `2*i` and `2*i + 1`
+</pre>
+</div>
 <div created="20170305081457128" creator="kylefeng" draft.of="2017-02-22" draft.title="2017-02-22" modified="20170305082229122" modifier="kylefeng" tags="todo" title="Draft of '2017-02-22'" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>TODO import
 
@@ -9042,14 +9224,8 @@ Dynamic dictionary
 | Th(1)???           | Th(N)     | Th(N)      | 1            | 1            | 1      | 1      | log N    |
 </pre>
 </div>
-<div created="20170305083138092" creator="kylefeng" draft.of="New Tiddler" draft.title="Test 2 Study Guide" modified="20170305083220852" modifier="kylefeng" tags="" title="Draft of 'New Tiddler'" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>* Know O(n) sorting algorithms?
-
-* Know these ones:
-** bucket sort
-** radix sort
-** quicksort
-** heapsort</pre>
+<div created="20170305083422549" creator="kylefeng" draft.of="New Tiddler" draft.title="Resources" modified="20170305083425862" modifier="kylefeng" tags="" title="Draft of 'New Tiddler'" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre></pre>
 </div>
 <div created="20170227145220228" creator="kylefeng" modified="20170305082633950" modifier="kylefeng" tags="" title="Notes" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>!!! Notes
@@ -9069,14 +9245,20 @@ Dynamic dictionary
 &lt;$list filter=&quot;[tag[adt]sort[title]]&quot;/&gt;
 </pre>
 </div>
-<div created="20170305083138092" creator="kylefeng" modified="20170305083227808" modifier="kylefeng" tags="" title="Test 2 Study Guide" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170305083138092" creator="kylefeng" modified="20170305083759059" modifier="kylefeng" tags="[[study guide]]" title="Test 2 Study Guide" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>* Know O(n) sorting algorithms?
 
 * Know these ones:
 ** bucket sort
 ** radix sort
 ** quicksort
-** heapsort</pre>
+** heapsort
+** mergesort
+
+TODO include table of runtimes
+TODO transclude?
+
+Read Weiss, Ch 7.6.</pre>
 </div>
 <div created="20170227145715014" modified="20170227145716688" tags="" title="tree" type="image/jpeg" revision="0" bag="default">
 <pre>���� JFIF      �� C 	

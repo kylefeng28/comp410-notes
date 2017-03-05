@@ -1,17 +1,10 @@
-created: 20170305083138092
+created: 20170305083422549
 creator: kylefeng
 draft.of: New Tiddler
-draft.title: Test 2 Study Guide
-modified: 20170305083220852
+draft.title: Resources
+modified: 20170305083425862
 modifier: kylefeng
 tags: 
 title: Draft of 'New Tiddler'
 type: text/vnd.tiddlywiki
 
-* Know O(n) sorting algorithms?
-
-* Know these ones:
-** bucket sort
-** radix sort
-** quicksort
-** heapsort

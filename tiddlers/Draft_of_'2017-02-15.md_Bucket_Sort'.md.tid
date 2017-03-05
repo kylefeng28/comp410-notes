@@ -1,0 +1,96 @@
+created: 20170305082828632
+creator: kylefeng
+draft.of: 2017-02-15.md Bucket Sort
+draft.title: 2017-02-15.md Bucket Sort
+modified: 20170305083417530
+modifier: kylefeng
+tags: notes todo alg
+title: Draft of '2017-02-15.md Bucket Sort'
+type: text/x-markdown
+
+2017-02-15
+
+Bucket sort
+
+___________
+import
+
+
+Types of data structures:
+
+- Linear
+- Hierarchal (parent-child)
+  - ??
+- Network
+  - Multiple forms of connectivities
+  - Graphs: w/ edges and nodes
+
+Binary trees:
+
+- At most 2 children: 0, 1, or 2 children
+- Root: topmost node
+- Depth: distance from root to node
+
+Binary tree linked list implementation:
+
+```
+/* Binary tree node */
+class BTNode<C> {
+    C data;
+    BTNode<C> left;
+    BTNode<C> right;
+    BTNode(C d, BTNode<C> l, BDNode<C> r) {
+        data = d;
+        left = l;
+        right = r;
+    }
+}
+```
+
+```
+/* Make this tree:
+       5 (Root)
+      / \
+     3   8
+ */
+BTNode<Integer> tree1 = null;
+tree1 = new BTNode<Integer>(5,
+  new BTNode<Integer>(3, null, null);
+  new BTNode<Integer>(8, null, null));
+```
+
+```
+// TODO: count
+```
+
+```
+/* Print tree */
+int printTree(BTNode<C> tree) {
+    /*
+     * In-order: 1-2-3
+     * Pre-order: 2-1-3
+     * Post-order: 1-3-2
+     */
+
+    if (tree == null) { return; }
+    /*1*/ printTree(tree.left);
+    /*2*/ System.out.print(tree.data);
+    /*3*/ printTree(tree.right):
+}
+```
+
+```
+/* Deep copy */
+BTNode<C> deepCopy(BTNode<T> tree1) {
+    if (tree1 == null) { return null; }
+    return new BTNode<T>(tree1.data,
+      deepCopy(tree1.left),
+      deepCopy(tree2.right));
+}
+```
+
+Binary tree array implementation:
+
+_______ TODO
+root at `?` `0`
+children at `? + i?` `2*i` and `2*i + 1`

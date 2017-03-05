@@ -1,8 +1,8 @@
 created: 20170305083138092
 creator: kylefeng
-modified: 20170305083227808
+modified: 20170305083759059
 modifier: kylefeng
-tags: 
+tags: [[study guide]]
 title: Test 2 Study Guide
 type: text/vnd.tiddlywiki
 
@@ -13,3 +13,9 @@ type: text/vnd.tiddlywiki
 ** radix sort
 ** quicksort
 ** heapsort
+** mergesort
+
+TODO include table of runtimes
+TODO transclude?
+
+Read Weiss, Ch 7.6.
