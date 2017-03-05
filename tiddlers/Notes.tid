@@ -1,13 +1,23 @@
 created: 20170227145220228
-modified: 20170301145109192
+creator: kylefeng
+modified: 20170305082633950
+modifier: kylefeng
 tags: 
 title: Notes
+type: text/vnd.tiddlywiki
 
-* [[2017-02-13 Search Algorithms]]
-* [[2017-02-27 Binary Search Trees]]
+!!! Notes
+<$list filter="[tag[notes]sort[title]]"/>
 
-TODO import notes
+!!! TODO
+* import notes
+<$list filter="[tag[todo]sort[title]]"/>
 
-Tags:
-alg Algorithm
-adt Abstract Data Type
+* insert tags
+
+!!! Tags
+!!!! Algorithms (alg)
+<$list filter="[tag[alg]sort[title]]"/>
+
+!!!! Abstract Data Type (adt)
+<$list filter="[tag[adt]sort[title]]"/>

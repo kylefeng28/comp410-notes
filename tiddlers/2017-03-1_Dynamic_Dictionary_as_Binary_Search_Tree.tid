@@ -1,7 +1,10 @@
 created: 20170301140916310
-modified: 20170301161315572
-tags: adt bst
+creator: kylefeng
+modified: 20170305082342912
+modifier: kylefeng
+tags: adt bst notes
 title: 2017-03-1 Dynamic Dictionary as Binary Search Tree
+type: text/vnd.tiddlywiki
 
 * `insert(key, data)`
 * `find(key)`

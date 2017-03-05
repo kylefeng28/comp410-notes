@@ -1,0 +1,62 @@
+created: 20170305082707539
+creator: kylefeng
+modified: 20170305082744706
+modifier: kylefeng
+tags: notes todo adt
+title: 2017-02-20 Heaps
+type: text/x-markdown
+
+```
+Linear
+                              Linked structures, recursion
+                             /
+Hierarchal -- Trees (binary)
+                             \
+                              Arrays
+Networked 
+```
+
+Using array:
+___ TODO import from last time
+
+
+
+
+A heap is a tree satisfying 2 additional properties
+1. The structure property -- every level except the last must be full, and the last level must be filled from left to right. A complete tree is one that satisfies the structure property.
+?????
+2. The heap order property (only works with comparables) -- the value stored at a node of the tree is at least as large as the value stored at its parent. The root has the smallest value.
+
+Building a heap:
+10 12 1 114 6 5 8 155 3 9 7
+
+```
+      1
+    /   \
+   6    10
+  /  \
+14    12
+```
+
+Adding an element: add to the last level, and if it is smaller than its parent, swap with it.
+
+Swaps are recursive, cascading all the way to the root.
+
+When you swap a parent with its child, you do not need to check the other child because the child was already known to be >= the parent, and the new parent is even smaller.
+
+Question 6.2.a - see NBP ???
+Removing an element: maintain the heap order property before recursively sorting the structure property i.e. take the last element and put it in the empty spot where the root was before and then find the smaller of the two children and swap, recursing down the levels.
+
+When using a heap to implement a priority queue, insert - $\Theta(\log N)$, min - $\Theta(1)$, deleteMin - $\Theta(\log N)$
+
+
+{ 3 6 4 10 7 5 2 }
+Size = 7
+
+_____ TODO import algorithm
+
+A more efficient method:
+Waste location 0
+Can be implemented in hardware with one clock cycle: SLL and SRL 
+
+Heapsort

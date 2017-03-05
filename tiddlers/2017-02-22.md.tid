@@ -1,0 +1,26 @@
+created: 20170305081457128
+creator: kylefeng
+modified: 20170305082232109
+modifier: kylefeng
+tags: todo notes
+title: 2017-02-22
+type: text/vnd.tiddlywiki
+
+TODO import
+
+Sorting an array using a priority queue using a heap:
+Insert and delete take $\ceil{O(\log_2 n)}$
+
+Not in-place, because you are using the priority queue as a buffer
+
+Code on p. 281
+
+
+Dynamic dictionary
+
+| !Operation         | !Unsorted | !Sorted    | !Unsorted    | !Sorted      | !BST   | !BST   | !Balanced |
+|                    | !array    | !array     | !Linked List | !Linked List | !worst | !avg   | !BST      |
+| insert(key, value) | Theta(1)  | Th(N)      | Th 1         | N            | n      | log n  | log N    |
+| find(key) -> value | Th(N)     | Th(log N)  | N            | N            | n      | log n  | log N    |
+| delete(key)        | Th(N)     | Th(N)      | N            | N            | n      | log n  | log N    |
+| Th(1)???           | Th(N)     | Th(N)      | 1            | 1            | 1      | 1      | log N    |

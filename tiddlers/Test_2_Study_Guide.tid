@@ -1,0 +1,15 @@
+created: 20170305083138092
+creator: kylefeng
+modified: 20170305083227808
+modifier: kylefeng
+tags: 
+title: Test 2 Study Guide
+type: text/vnd.tiddlywiki
+
+* Know O(n) sorting algorithms?
+
+* Know these ones:
+** bucket sort
+** radix sort
+** quicksort
+** heapsort

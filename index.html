@@ -177,11 +177,23 @@ Error message and password prompt
 
 <li>2017-02-13 Search Algorithms</li>
 
+<li>2017-02-15.md Bucket Sort</li>
+
+<li>2017-02-20 Heaps</li>
+
+<li>2017-02-22</li>
+
 <li>2017-02-27 Binary Search Trees</li>
 
 <li>2017-03-1 Dynamic Dictionary as Binary Search Tree</li>
 
+<li>Draft of '2017-02-22'</li>
+
+<li>Draft of 'New Tiddler'</li>
+
 <li>Notes</li>
+
+<li>Test 2 Study Guide</li>
 
 <li>tree</li>
 
@@ -7900,9 +7912,10 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20170227145135463" modified="20170228040913883" title="$:/DefaultTiddlers" revision="0" bag="default">
-<pre>Notes
-Upcoming</pre>
+<div created="20170227145135463" creator="kylefeng" modified="20170305083136623" modifier="kylefeng" title="$:/DefaultTiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>[[Test 2 Study Guide]]
+Upcoming
+Notes</pre>
 </div>
 <div title="$:/isEncrypted" revision="0" bag="default">
 <pre>no</pre>
@@ -8467,7 +8480,7 @@ Upcoming</pre>
 <div created="20170227145109319" modified="20170227145125559" title="$:/SiteTitle" revision="0" bag="default">
 <pre>COMP 410</pre>
 </div>
-<div list="Notes Upcoming" title="$:/StoryList" revision="1" bag="default">
+<div list="[[Test 2 Study Guide]] Upcoming Notes" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json" revision="0" bag="default">
@@ -8602,7 +8615,7 @@ Upcoming</pre>
 <div created="20170305080414030" creator="kylefeng" modified="20170305080537530" modifier="kylefeng" title="$:/UploadName" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>COMP 410</pre>
 </div>
-<div created="20170228035945331" creator="kylefeng" modified="20170305080216513" modifier="kylefeng" tags="todo" title="2017-02-13 Search Algorithms" type="text/x-markdown" revision="0" bag="default">
+<div created="20170228035945331" creator="kylefeng" modified="20170305082237454" modifier="kylefeng" tags="todo notes" title="2017-02-13 Search Algorithms" type="text/x-markdown" revision="0" bag="default">
 <pre>__TODO import search algorithms
 
 Search algorithms:
@@ -8667,7 +8680,174 @@ public interface PQ&lt;C extends Comparable&lt;?super C&gt;&gt; {
 }
 ```</pre>
 </div>
-<div created="20170227145152773" creator="kylefeng" modified="20170305080059332" modifier="kylefeng" tags="" title="2017-02-27 Binary Search Trees" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170305082828632" creator="kylefeng" modified="20170305083035232" modifier="kylefeng" tags="notes todo alg" title="2017-02-15.md Bucket Sort" type="text/x-markdown" revision="0" bag="default">
+<pre>2017-02-15
+
+Bucket sort
+
+___________
+import
+
+
+Types of data structures:
+
+- Linear
+- Hierarchal (parent-child)
+  - ??
+- Network
+  - Multiple forms of connectivities
+  - Graphs: w/ edges and nodes
+
+Binary trees:
+
+- At most 2 children: 0, 1, or 2 children
+- Root: topmost node
+- Depth: distance from root to node
+
+Binary tree linked list implementation:
+
+```
+/* Binary tree node */
+class BTNode&lt;C&gt; {
+    C data;
+    BTNode&lt;C&gt; left;
+    BTNode&lt;C&gt; right;
+    BTNode(C d, BTNode&lt;C&gt; l, BDNode&lt;C&gt; r) {
+        data = d;
+        left = l;
+        right = r;
+    }
+}
+```
+
+```
+/* Make this tree:
+       5 (Root)
+      / \
+     3   8
+ */
+BTNode&lt;Integer&gt; tree1 = null;
+tree1 = new BTNode&lt;Integer&gt;(5,
+  new BTNode&lt;Integer&gt;(3, null, null);
+  new BTNode&lt;Integer&gt;(8, null, null));
+```
+
+```
+// TODO: count
+```
+
+```
+/* Print tree */
+int printTree(BTNode&lt;C&gt; tree) {
+    /*
+     * In-order: 1-2-3
+     * Pre-order: 2-1-3
+     * Post-order: 1-3-2
+     */
+
+    if (tree == null) { return; }
+    /*1*/ printTree(tree.left);
+    /*2*/ System.out.print(tree.data);
+    /*3*/ printTree(tree.right):
+}
+```
+
+```
+/* Deep copy */
+BTNode&lt;C&gt; deepCopy(BTNode&lt;T&gt; tree1) {
+    if (tree1 == null) { return null; }
+    return new BTNode&lt;T&gt;(tree1.data,
+      deepCopy(tree1.left),
+      deepCopy(tree2.right));
+}
+```
+
+Binary tree array implementation:
+
+_______ TODO
+root at `?` `0`
+children at `? + i?` `2*i` and `2*i + 1`
+</pre>
+</div>
+<div created="20170305082707539" creator="kylefeng" modified="20170305082744706" modifier="kylefeng" tags="notes todo adt" title="2017-02-20 Heaps" type="text/x-markdown" revision="0" bag="default">
+<pre>```
+Linear
+                              Linked structures, recursion
+                             /
+Hierarchal -- Trees (binary)
+                             \
+                              Arrays
+Networked 
+```
+
+Using array:
+___ TODO import from last time
+
+
+
+
+A heap is a tree satisfying 2 additional properties
+1. The structure property -- every level except the last must be full, and the last level must be filled from left to right. A complete tree is one that satisfies the structure property.
+?????
+2. The heap order property (only works with comparables) -- the value stored at a node of the tree is at least as large as the value stored at its parent. The root has the smallest value.
+
+Building a heap:
+10 12 1 114 6 5 8 155 3 9 7
+
+```
+      1
+    /   \
+   6    10
+  /  \
+14    12
+```
+
+Adding an element: add to the last level, and if it is smaller than its parent, swap with it.
+
+Swaps are recursive, cascading all the way to the root.
+
+When you swap a parent with its child, you do not need to check the other child because the child was already known to be &gt;= the parent, and the new parent is even smaller.
+
+Question 6.2.a - see NBP ???
+Removing an element: maintain the heap order property before recursively sorting the structure property i.e. take the last element and put it in the empty spot where the root was before and then find the smaller of the two children and swap, recursing down the levels.
+
+When using a heap to implement a priority queue, insert - $\Theta(\log N)$, min - $\Theta(1)$, deleteMin - $\Theta(\log N)$
+
+
+{ 3 6 4 10 7 5 2 }
+Size = 7
+
+_____ TODO import algorithm
+
+A more efficient method:
+Waste location 0
+Can be implemented in hardware with one clock cycle: SLL and SRL 
+
+Heapsort
+</pre>
+</div>
+<div created="20170305081457128" creator="kylefeng" modified="20170305082232109" modifier="kylefeng" tags="todo notes" title="2017-02-22" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>TODO import
+
+Sorting an array using a priority queue using a heap:
+Insert and delete take $\ceil{O(\log_2 n)}$
+
+Not in-place, because you are using the priority queue as a buffer
+
+Code on p. 281
+
+
+Dynamic dictionary
+
+| !Operation         | !Unsorted | !Sorted    | !Unsorted    | !Sorted      | !BST   | !BST   | !Balanced |
+|                    | !array    | !array     | !Linked List | !Linked List | !worst | !avg   | !BST      |
+| insert(key, value) | Theta(1)  | Th(N)      | Th 1         | N            | n      | log n  | log N    |
+| find(key) -&gt; value | Th(N)     | Th(log N)  | N            | N            | n      | log n  | log N    |
+| delete(key)        | Th(N)     | Th(N)      | N            | N            | n      | log n  | log N    |
+| Th(1)???           | Th(N)     | Th(N)      | 1            | 1            | 1      | 1      | log N    |
+</pre>
+</div>
+<div created="20170227145152773" creator="kylefeng" modified="20170305082251021" modifier="kylefeng" tags="notes" title="2017-02-27 Binary Search Trees" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>```java
 class Tree&lt;T&gt; {
     public T data;
@@ -8720,7 +8900,7 @@ Insertion and find are $\log(N)$
 |contains   | O(n)  | O(log N) |
 |remove     | O(n)  | O(log N) |</pre>
 </div>
-<div created="20170301140916310" modified="20170301161315572" tags="adt bst" title="2017-03-1 Dynamic Dictionary as Binary Search Tree" revision="0" bag="default">
+<div created="20170301140916310" creator="kylefeng" modified="20170305082342912" modifier="kylefeng" tags="adt bst notes" title="2017-03-1 Dynamic Dictionary as Binary Search Tree" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>* `insert(key, data)`
 * `find(key)`
 * `remove(key)`
@@ -8841,15 +9021,62 @@ x = c ? a : b;
 
 Practice writing a recursive method that would return whether something is a binary search tree or not.</pre>
 </div>
-<div created="20170227145220228" modified="20170301145109192" tags="" title="Notes" revision="0" bag="default">
-<pre>* [[2017-02-13 Search Algorithms]]
-* [[2017-02-27 Binary Search Trees]]
+<div created="20170305081457128" creator="kylefeng" draft.of="2017-02-22" draft.title="2017-02-22" modified="20170305082229122" modifier="kylefeng" tags="todo" title="Draft of '2017-02-22'" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>TODO import
 
-TODO import notes
+Sorting an array using a priority queue using a heap:
+Insert and delete take $\ceil{O(\log_2 n)}$
 
-Tags:
-alg Algorithm
-adt Abstract Data Type</pre>
+Not in-place, because you are using the priority queue as a buffer
+
+Code on p. 281
+
+
+Dynamic dictionary
+
+| !Operation         | !Unsorted | !Sorted    | !Unsorted    | !Sorted      | !BST   | !BST   | !Balanced |
+|                    | !array    | !array     | !Linked List | !Linked List | !worst | !avg   | !BST      |
+| insert(key, value) | Theta(1)  | Th(N)      | Th 1         | N            | n      | log n  | log N    |
+| find(key) -&gt; value | Th(N)     | Th(log N)  | N            | N            | n      | log n  | log N    |
+| delete(key)        | Th(N)     | Th(N)      | N            | N            | n      | log n  | log N    |
+| Th(1)???           | Th(N)     | Th(N)      | 1            | 1            | 1      | 1      | log N    |
+</pre>
+</div>
+<div created="20170305083138092" creator="kylefeng" draft.of="New Tiddler" draft.title="Test 2 Study Guide" modified="20170305083220852" modifier="kylefeng" tags="" title="Draft of 'New Tiddler'" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>* Know O(n) sorting algorithms?
+
+* Know these ones:
+** bucket sort
+** radix sort
+** quicksort
+** heapsort</pre>
+</div>
+<div created="20170227145220228" creator="kylefeng" modified="20170305082633950" modifier="kylefeng" tags="" title="Notes" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>!!! Notes
+&lt;$list filter=&quot;[tag[notes]sort[title]]&quot;/&gt;
+
+!!! TODO
+* import notes
+&lt;$list filter=&quot;[tag[todo]sort[title]]&quot;/&gt;
+
+* insert tags
+
+!!! Tags
+!!!! Algorithms (alg)
+&lt;$list filter=&quot;[tag[alg]sort[title]]&quot;/&gt;
+
+!!!! Abstract Data Type (adt)
+&lt;$list filter=&quot;[tag[adt]sort[title]]&quot;/&gt;
+</pre>
+</div>
+<div created="20170305083138092" creator="kylefeng" modified="20170305083227808" modifier="kylefeng" tags="" title="Test 2 Study Guide" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>* Know O(n) sorting algorithms?
+
+* Know these ones:
+** bucket sort
+** radix sort
+** quicksort
+** heapsort</pre>
 </div>
 <div created="20170227145715014" modified="20170227145716688" tags="" title="tree" type="image/jpeg" revision="0" bag="default">
 <pre>���� JFIF      �� C 	
