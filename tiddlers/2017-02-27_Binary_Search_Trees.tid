@@ -1,0 +1,59 @@
+created: 20170227145152773
+creator: kylefeng
+modified: 20170305080059332
+modifier: kylefeng
+tags: 
+title: 2017-02-27 Binary Search Trees
+type: text/vnd.tiddlywiki
+
+```java
+class Tree<T> {
+    public T data;
+    public Tree<T> left, right;
+    public Tree(T item, Tree<T> l, Tree<T> r) {
+        data = item;
+        left = l;
+        right = r;
+    }
+}
+```
+
+```java
+public static void printLeftMostItem(Tree<T> t) { // PRE: t not null
+    if (t.left == null) System.out.println(t item);
+    else printLeftMostItem(t.left);
+}
+public static void printLeftMostLeaf(Tree<T> t) {
+	if (t.left == null) && (t.right == null) print...
+	else if (t.left != null) printLeftMostLeaf(t.left);
+	else printLeftMostLeaf(t.right);
+}
+public static void makeLeftMostLeaf(Tree<T> t, T item) {
+	if (t.left == null) && (t.right == null) print...
+	else if (t.left != null) printLeftMostLeaf(t.left);
+	else printLeftMostLeaf(t.right);
+}
+```
+
+!!! Dynamic dictionaries
+* insert(key, value) -> void
+* find(key) -> value
+* contains(key) -> bool
+* remove(key) -> void
+
+
+!!! Binary Search Trees
+* A binary search tree is a binary tree with three special properties:
+* For each node N, the item stored in N is
+** > all items stored in the left subtree of N, and
+** < all items stored in the right subtree of N
+
+3, 1, 4, 6, 9, 2, 5, 7
+
+[[tree]]
+
+Insertion and find are $\log(N)$
+
+|insert     | O(n)  | O(log N) |
+|contains   | O(n)  | O(log N) |
+|remove     | O(n)  | O(log N) |

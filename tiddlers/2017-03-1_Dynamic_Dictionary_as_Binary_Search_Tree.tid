@@ -1,0 +1,124 @@
+created: 20170301140916310
+modified: 20170301161315572
+tags: adt bst
+title: 2017-03-1 Dynamic Dictionary as Binary Search Tree
+
+* `insert(key, data)`
+* `find(key)`
+* `remove(key)`
+
+Java Map interface
+
+```java
+Map<Integer, String> m1 = new TreeMap<>()
+                          new HashMap<>()
+                          new LinkedHashMap()
+
+m1.put(10, "Ten")
+m1.put(8, "Eight")
+m1.get(10) -> "Ten"
+m1.remove(8)
+```
+
+```java
+public interface  DD<K extends Comparable<? super K>, D> {
+    public void insert(K k, D d);
+    public D find(K k);
+    public void remove(K k);
+}
+```
+
+DD as Binary search tree
+
+```java
+private class DDasBST<K, D> implements DD<K, D> {
+    public BSTree<K, D> root;
+    public DDasBST() { root = null; }
+
+	// find()
+    public D find(K k) { return find(root, k); }
+    private D find(BSTree<K,D> t, K k) {
+        // Empty tree -> null
+        if (t == null) return null;
+        int compRes = k.compareTo(t.key);
+        // Less than -> find in left child
+        if (compRes < 0) { return find(t.left, k); }
+        // Greater than -> find in right child
+        else if (compRes > 0) { return find(t.right, k); }
+        // Equal to -> return data
+        else return data;
+    }
+    
+    // insert()
+    public void insert(K k, D d) { root = insert(BSTree<K,D> t, D d); }
+    private BSTree<K,D> insert(BSTree<K,D> t, D d) {
+    	// Empty tree -> create new tree
+        if (t == null) { return new BSTree(k, d, null, null); }
+        int compRes = k.compareTo(t.key);
+        // Less than -> insert in left child
+        if (compRes < 0) { t.left = insert(t.left, k, d); }
+        // Greater than -> insert in right child
+        else if (compRes > 0) { t.right = insert(t.right, k, d); }
+        else t.data = d;
+    }
+    
+    // delete()
+    // Three cases:
+    // Tree has no children: easily delete
+    // Tree has 1 child: replace with child
+    // Tree has 2 children: ???
+    public void remove(K k) { root = remove(root, k); }
+    
+    // minVal(): Find smallest value in tree
+    // PRE: t != null
+    private BSTree<K,D> minVal(BSTree<K,D> t) {
+    	// No left child -> return tree
+        if (t.left ==  null) { return t; }
+        // Otherwise, follow the left child down the rabbit hole
+        return minVal(t.left);
+    }
+    
+    private BSTree<K,D> remove(BSTRee<K,D> t, D d) {
+    	if (t == null) { return null; }
+        int compRes = k.compareTo(t.key);
+        // ? left
+        if (compRes < 0) { t.left = remove(t.left, k);
+        // ? right
+        else if (compRes > 0) { t.right = remove(t.right, k);
+        // ? equal
+        else {
+            // Note: you could turn the booleans to ints and add them the number of children, this makes it easier to read the code
+        	// No children
+            if (t.left == null && t.right == null) { t = null; }
+            // 1 child (xor could be used too)
+            else if (t.left == null || t.right == null) { t.left = null ? t.right:t.left; }
+            // 2 children
+            else {
+            	// ? get minimum?
+            	BSTree<K,D> tmp = minVal(t.right);
+                // ? steal the key and data?
+                t.key = tmp.key; t.data = tmp.data;
+                // ??? something about right child being greater than the left, so the smallest right child is still greater than the left ?????
+                t.right = remove(t.right, tmp.key);
+                
+            }
+
+        }
+    }
+}
+```
+
+Ternary conditional:
+
+```java
+if (c) x = a;
+else x = b;
+```
+
+Can be shortened to:
+
+```java
+x = c ? a : b;
+```
+
+Practice writing a recursive method that would return whether something is a binary search tree or not.

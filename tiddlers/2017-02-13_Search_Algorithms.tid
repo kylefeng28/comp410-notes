@@ -1,0 +1,71 @@
+created: 20170228035945331
+creator: kylefeng
+modified: 20170305080216513
+modifier: kylefeng
+tags: todo
+title: 2017-02-13 Search Algorithms
+type: text/x-markdown
+
+__TODO import search algorithms
+
+Search algorithms:
+
+* Sorted: Binary search Theta(log n)
+* Unsorted: Cannot be less than Theta(n)
+* Sorted linked list: Theta(n)
+  * Sorting is not useful for linked lists
+
+p. 215
+Give an efficient algorithm to determine if there is an integer i
+such that $A_i = i$ in an array of integer
+Strictly increasing: $A_1 < A_2 < A_3 < ... < A_N$
+
+Sorting algorithms:
+
+Name             | Running time  | Memory       | Stability 
+-----------------|---------------|--------------|-----------
+Insertion sort\* | Theta(n^2)    | In-place     | Stable
+Selection sort   |      ?        | In-place?    | Stable?
+Bubble sort      |      ?        | In-place?    | ?
+Merge sort       | Theta(n log n)| Not in-place | Unstable
+Quick sort       | Theta(n^2)    | Not in-place | Stable
+                 |Avg. Θ(n log n)|Or in-place   | Unstable
+
+\* LL vs array list doesn't matter here
+
+Heapsort?
+__ TODO ^ Check table data
+
+No comparison-based sorting algorithm can be better than O(n log n)
+"Holy grail of sorting"
+
+
+Linear time sorts
+- Bucket sort (counting sort)
+- Radix sort
+
+- Given positive integer $A_1 ... A_n$, each $<= m$ for some constant $m$
+- Build in bucket
+- for i = 1 to n
+  - Place $A_i$ in $A_i$ of the bucket
+- for j = 1 to m
+  - Print out the element in bucket $j$
+
+Running time: $\Theta(n+m)$
+How can it be better than $\Theta(n log n)$?
+Not comparison-based???
+
+https://stackoverflow.com/questions/7155285/what-are-the-rules-for-the-%CE%A9n-log-n-barrier-for-sorting-algorithms
+
+Programming assignment 2:
+
+
+```
+public interface PQ<C extends Comparable<?super C>> {
+    boolean isFull()
+    boolean isEmpty()
+    void insert(C data): O(n)
+    C min(): O(1)
+    C deleteMin(): O(1)
+}
+```
