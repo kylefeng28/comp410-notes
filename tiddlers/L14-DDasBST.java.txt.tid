@@ -1,0 +1,66 @@
+created: 20170305084424662
+creator: kylefeng
+modified: 20170305084446338
+modifier: kylefeng
+tags: code
+title: L14-DDasBST.java
+type: text/plain
+
+// BST implementation of dynamic dictionaries
+public class DDasBST<K extends Comparable<? super K>, D> implements DD<K,D>{
+	private BSTree<K,D> root;
+	public DDasBST(){root = null;} //Constructor
+	public void makeEmpty(){root = null;}
+	public boolean isEmpty(){return root == null;}
+	public void insert(K k, D d){root = insert(root, k, d);}
+	public D find(K k){return find(root, k);}
+	public void remove(K k){root = remove(root, k);}
+
+	//print is useful for testing and debugging...
+	public void printDD(){print(root);}
+	
+	private void print(BSTree<K,D> t){
+		if (t == null) return;
+		print(t.left);
+		System.out.print("<" + t.key + ", " + t.data + ">  ");
+		print(t.right);
+	}
+
+	private BSTree<K,D> insert(BSTree<K,D> t, K k, D d){
+		if (t == null) return new BSTree<K,D>(k, d, null, null);
+		int compareResult = k.compareTo(t.key);
+		if (compareResult < 0) t.left = insert(t.left, k, d);
+		else if (compareResult>0) t.right = insert(t.right, k, d);
+		else t.data = d;
+		return t;
+	}
+	
+	private D find(BSTree<K,D> t, K k){
+		if (t == null) return null;
+		int compareResult = k.compareTo(t.key);
+		if (compareResult == 0) return t.data;
+		if (compareResult < 0) return find(t.left, k);
+		return find(t.right, k);		
+	}
+	private BSTree<K,D> findMin(BSTree<K,D> t){//PRE: not null
+		if (t.left == null)return t;
+		return findMin(t.left);
+	}
+	
+	private BSTree<K,D> remove(BSTree<K,D> t, K k){
+		if (t==null) return null;
+		int compareResult = k.compareTo(t.key);
+		if (compareResult < 0) t.left = remove(t.left, k);
+		else if (compareResult > 0) t.right = remove(t.right, k);
+		else{//found
+			if (t.left == null && t.right ==null) t = null;
+			else if (t.left == null || t.right == null) t =  (t.left == null) ? t.right : t.left;			
+			else{//both children exist
+				BSTree<K,D> tmp1 = findMin(t.right);
+				t.key = tmp1.key; t.data = tmp1.data;
+				t.right = remove(t.right, tmp1.key);
+			}
+		}
+		return t;
+	}
+}

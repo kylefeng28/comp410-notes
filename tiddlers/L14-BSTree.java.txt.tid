@@ -1,0 +1,12 @@
+created: 20170305084611238
+modified: 20170305084611238
+title: L14-BSTree.java
+type: text/plain
+
+public class BSTree<K extends Comparable<? super K>, D> {
+	K key;
+	D data;
+	//May have other fields here [height; balance; etc.]
+	BSTree<K,D> left, right;
+	public BSTree(K k, D d, BSTree<K,D> l, BSTree<K,D> r){key=k;data=d;left=l;right=r;}
+}

@@ -1,10 +1,13 @@
 created: 20170301140916310
 creator: kylefeng
-modified: 20170305083601133
+date: 2017-03-01
+modified: 20170305084809392
 modifier: kylefeng
 tags: adt bst notes
-title: 2017-03-01 Dynamic Dictionary as Binary Search Tree
+title: 2017-03-01 -- Dynamic Dictionary as Binary Search Tree
 type: text/vnd.tiddlywiki
+
+!! Lec 14
 
 * `insert(key, data)`
 * `find(key)`
@@ -123,5 +126,10 @@ Can be shortened to:
 ```java
 x = c ? a : b;
 ```
+
+Full code samples:
+* [[L14-BSTree.java]]
+* [[L14-DD.java]]
+* [[L14-DDasBST.java]]
 
 Practice writing a recursive method that would return whether something is a binary search tree or not.

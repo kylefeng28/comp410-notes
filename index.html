@@ -187,13 +187,21 @@ Error message and password prompt
 
 <li>2017-02-27 Binary Search Trees</li>
 
-<li>2017-03-01 Dynamic Dictionary as Binary Search Tree</li>
+<li>2017-03-01 -- Dynamic Dictionary as Binary Search Tree</li>
 
 <li>Draft of '2017-02-15.md Bucket Sort'</li>
 
 <li>Draft of '2017-02-22'</li>
 
+<li>Draft of 'L14-DDasBST.java'</li>
+
 <li>Draft of 'New Tiddler'</li>
+
+<li>L14-BSTree.java</li>
+
+<li>L14-DD.java</li>
+
+<li>L14-DDasBST.java</li>
 
 <li>Notes</li>
 
@@ -8993,8 +9001,10 @@ Insertion and find are $\log(N)$
 |contains   | O(n)  | O(log N) |
 |remove     | O(n)  | O(log N) |</pre>
 </div>
-<div created="20170301140916310" creator="kylefeng" modified="20170305083601133" modifier="kylefeng" tags="adt bst notes" title="2017-03-01 Dynamic Dictionary as Binary Search Tree" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>* `insert(key, data)`
+<div created="20170301140916310" creator="kylefeng" date="2017-03-01" modified="20170305084809392" modifier="kylefeng" tags="adt bst notes" title="2017-03-01 -- Dynamic Dictionary as Binary Search Tree" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>!! Lec 14
+
+* `insert(key, data)`
 * `find(key)`
 * `remove(key)`
 
@@ -9112,6 +9122,11 @@ Can be shortened to:
 x = c ? a : b;
 ```
 
+Full code samples:
+* [[L14-BSTree.java]]
+* [[L14-DD.java]]
+* [[L14-DDasBST.java]]
+
 Practice writing a recursive method that would return whether something is a binary search tree or not.</pre>
 </div>
 <div created="20170305082828632" creator="kylefeng" draft.of="2017-02-15.md Bucket Sort" draft.title="2017-02-15.md Bucket Sort" modified="20170305083417530" modifier="kylefeng" tags="notes todo alg" title="Draft of '2017-02-15.md Bucket Sort'" type="text/x-markdown" revision="0" bag="default">
@@ -9224,8 +9239,149 @@ Dynamic dictionary
 | Th(1)???           | Th(N)     | Th(N)      | 1            | 1            | 1      | 1      | log N    |
 </pre>
 </div>
+<div created="20170305084424662" creator="kylefeng" draft.of="L14-DDasBST.java" draft.title="L14-DDasBST.java" modified="20170305084437024" modifier="kylefeng" tags="code" title="Draft of 'L14-DDasBST.java'" type="text/plain" revision="0" bag="default">
+<pre>// BST implementation of dynamic dictionaries
+public class DDasBST&lt;K extends Comparable&lt;? super K&gt;, D&gt; implements DD&lt;K,D&gt;{
+	private BSTree&lt;K,D&gt; root;
+	public DDasBST(){root = null;} //Constructor
+	public void makeEmpty(){root = null;}
+	public boolean isEmpty(){return root == null;}
+	public void insert(K k, D d){root = insert(root, k, d);}
+	public D find(K k){return find(root, k);}
+	public void remove(K k){root = remove(root, k);}
+
+	//print is useful for testing and debugging...
+	public void printDD(){print(root);}
+	
+	private void print(BSTree&lt;K,D&gt; t){
+		if (t == null) return;
+		print(t.left);
+		System.out.print(&quot;&lt;&quot; + t.key + &quot;, &quot; + t.data + &quot;&gt;  &quot;);
+		print(t.right);
+	}
+
+	private BSTree&lt;K,D&gt; insert(BSTree&lt;K,D&gt; t, K k, D d){
+		if (t == null) return new BSTree&lt;K,D&gt;(k, d, null, null);
+		int compareResult = k.compareTo(t.key);
+		if (compareResult &lt; 0) t.left = insert(t.left, k, d);
+		else if (compareResult&gt;0) t.right = insert(t.right, k, d);
+		else t.data = d;
+		return t;
+	}
+	
+	private D find(BSTree&lt;K,D&gt; t, K k){
+		if (t == null) return null;
+		int compareResult = k.compareTo(t.key);
+		if (compareResult == 0) return t.data;
+		if (compareResult &lt; 0) return find(t.left, k);
+		return find(t.right, k);		
+	}
+	private BSTree&lt;K,D&gt; findMin(BSTree&lt;K,D&gt; t){//PRE: not null
+		if (t.left == null)return t;
+		return findMin(t.left);
+	}
+	
+	private BSTree&lt;K,D&gt; remove(BSTree&lt;K,D&gt; t, K k){
+		if (t==null) return null;
+		int compareResult = k.compareTo(t.key);
+		if (compareResult &lt; 0) t.left = remove(t.left, k);
+		else if (compareResult &gt; 0) t.right = remove(t.right, k);
+		else{//found
+			if (t.left == null &amp;&amp; t.right ==null) t = null;
+			else if (t.left == null || t.right == null) t =  (t.left == null) ? t.right : t.left;			
+			else{//both children exist
+				BSTree&lt;K,D&gt; tmp1 = findMin(t.right);
+				t.key = tmp1.key; t.data = tmp1.data;
+				t.right = remove(t.right, tmp1.key);
+			}
+		}
+		return t;
+	}
+}
+</pre>
+</div>
 <div created="20170305083422549" creator="kylefeng" draft.of="New Tiddler" draft.title="Resources" modified="20170305083425862" modifier="kylefeng" tags="" title="Draft of 'New Tiddler'" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
+</div>
+<div created="20170305084611238" modified="20170305084611238" title="L14-BSTree.java" type="text/plain" revision="0" bag="default">
+<pre>public class BSTree&lt;K extends Comparable&lt;? super K&gt;, D&gt; {
+	K key;
+	D data;
+	//May have other fields here [height; balance; etc.]
+	BSTree&lt;K,D&gt; left, right;
+	public BSTree(K k, D d, BSTree&lt;K,D&gt; l, BSTree&lt;K,D&gt; r){key=k;data=d;left=l;right=r;}
+}
+</pre>
+</div>
+<div created="20170305084611231" modified="20170305084611231" title="L14-DD.java" type="text/plain" revision="0" bag="default">
+<pre>//Dynamic Dictionary Interface.
+public interface DD&lt;K extends Comparable&lt;? super K&gt;, D&gt;{
+	public void insert(K k, D d);
+	public D find(K k);
+	public void remove(K k);
+}
+</pre>
+</div>
+<div created="20170305084424662" creator="kylefeng" modified="20170305084446338" modifier="kylefeng" tags="code" title="L14-DDasBST.java" type="text/plain" revision="0" bag="default">
+<pre>// BST implementation of dynamic dictionaries
+public class DDasBST&lt;K extends Comparable&lt;? super K&gt;, D&gt; implements DD&lt;K,D&gt;{
+	private BSTree&lt;K,D&gt; root;
+	public DDasBST(){root = null;} //Constructor
+	public void makeEmpty(){root = null;}
+	public boolean isEmpty(){return root == null;}
+	public void insert(K k, D d){root = insert(root, k, d);}
+	public D find(K k){return find(root, k);}
+	public void remove(K k){root = remove(root, k);}
+
+	//print is useful for testing and debugging...
+	public void printDD(){print(root);}
+	
+	private void print(BSTree&lt;K,D&gt; t){
+		if (t == null) return;
+		print(t.left);
+		System.out.print(&quot;&lt;&quot; + t.key + &quot;, &quot; + t.data + &quot;&gt;  &quot;);
+		print(t.right);
+	}
+
+	private BSTree&lt;K,D&gt; insert(BSTree&lt;K,D&gt; t, K k, D d){
+		if (t == null) return new BSTree&lt;K,D&gt;(k, d, null, null);
+		int compareResult = k.compareTo(t.key);
+		if (compareResult &lt; 0) t.left = insert(t.left, k, d);
+		else if (compareResult&gt;0) t.right = insert(t.right, k, d);
+		else t.data = d;
+		return t;
+	}
+	
+	private D find(BSTree&lt;K,D&gt; t, K k){
+		if (t == null) return null;
+		int compareResult = k.compareTo(t.key);
+		if (compareResult == 0) return t.data;
+		if (compareResult &lt; 0) return find(t.left, k);
+		return find(t.right, k);		
+	}
+	private BSTree&lt;K,D&gt; findMin(BSTree&lt;K,D&gt; t){//PRE: not null
+		if (t.left == null)return t;
+		return findMin(t.left);
+	}
+	
+	private BSTree&lt;K,D&gt; remove(BSTree&lt;K,D&gt; t, K k){
+		if (t==null) return null;
+		int compareResult = k.compareTo(t.key);
+		if (compareResult &lt; 0) t.left = remove(t.left, k);
+		else if (compareResult &gt; 0) t.right = remove(t.right, k);
+		else{//found
+			if (t.left == null &amp;&amp; t.right ==null) t = null;
+			else if (t.left == null || t.right == null) t =  (t.left == null) ? t.right : t.left;			
+			else{//both children exist
+				BSTree&lt;K,D&gt; tmp1 = findMin(t.right);
+				t.key = tmp1.key; t.data = tmp1.data;
+				t.right = remove(t.right, tmp1.key);
+			}
+		}
+		return t;
+	}
+}
+</pre>
 </div>
 <div created="20170227145220228" creator="kylefeng" modified="20170305082633950" modifier="kylefeng" tags="" title="Notes" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>!!! Notes
@@ -9245,20 +9401,30 @@ Dynamic dictionary
 &lt;$list filter=&quot;[tag[adt]sort[title]]&quot;/&gt;
 </pre>
 </div>
-<div created="20170305083138092" creator="kylefeng" modified="20170305083759059" modifier="kylefeng" tags="[[study guide]]" title="Test 2 Study Guide" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170305083138092" creator="kylefeng" modified="20170305085453843" modifier="kylefeng" tags="[[study guide]]" title="Test 2 Study Guide" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>* Know O(n) sorting algorithms?
 
 * Know these ones:
 ** bucket sort
 ** radix sort
 ** quicksort
-** heapsort
-** mergesort
+** heapsort 7.5
+** mergesort 7.6
 
 TODO include table of runtimes
 TODO transclude?
 
-Read Weiss, Ch 7.6.</pre>
+Questions:
+
+* What is the difference between bucket, radix, and counting sorts?
+* What is NBP? 
+
+* Read Chapters:
+** 6.1, 6.2, and 6.3.1-3
+** 7.5 (heapsort)
+* Practice problems:
+** 7.44 and 7.45 are straight-forward; 7.42 and 7.43 less so.
+** 6.2 a, 6.3, 6.8, and 6.16</pre>
 </div>
 <div created="20170227145715014" modified="20170227145716688" tags="" title="tree" type="image/jpeg" revision="0" bag="default">
 <pre>���� JFIF      �� C 	

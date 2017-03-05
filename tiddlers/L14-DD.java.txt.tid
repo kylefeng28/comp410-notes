@@ -1,0 +1,11 @@
+created: 20170305084611231
+modified: 20170305084611231
+title: L14-DD.java
+type: text/plain
+
+//Dynamic Dictionary Interface.
+public interface DD<K extends Comparable<? super K>, D>{
+	public void insert(K k, D d);
+	public D find(K k);
+	public void remove(K k);
+}
