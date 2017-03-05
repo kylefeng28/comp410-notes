@@ -1,6 +1,6 @@
 created: 20170305083138092
 creator: kylefeng
-modified: 20170305085453843
+modified: 20170305085900046
 modifier: kylefeng
 tags: [[study guide]]
 title: Test 2 Study Guide
@@ -22,6 +22,7 @@ Questions:
 
 * What is the difference between bucket, radix, and counting sorts?
 * What is NBP? 
+* Why is `bulidHeap` in linear time even though it uses a for loop with `percolateDown` inside?
 
 * Read Chapters:
 ** 6.1, 6.2, and 6.3.1-3
