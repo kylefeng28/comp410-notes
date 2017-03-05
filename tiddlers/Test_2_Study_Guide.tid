@@ -1,10 +1,10 @@
 created: 20170305083138092
 creator: kylefeng
-modified: 20170305085900046
+modified: 20170305224725216
 modifier: kylefeng
 tags: [[study guide]]
 title: Test 2 Study Guide
-type: text/vnd.tiddlywiki
+type: text/x-markdown
 
 * Know O(n) sorting algorithms?
 
@@ -30,3 +30,9 @@ Questions:
 * Practice problems:
 ** 7.44 and 7.45 are straight-forward; 7.42 and 7.43 less so.
 ** 6.2 a, 6.3, 6.8, and 6.16
+
+```java
+public static void main() {
+	System.out.println("Test");
+}
+```
