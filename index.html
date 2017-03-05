@@ -187,6 +187,8 @@ Error message and password prompt
 
 <li>2017-02-27 Binary Search Trees</li>
 
+<li>2017-03-01 Dynamic Dictionary as Binary Search Tree</li>
+
 <li>Draft of '2017-02-15.md Bucket Sort'</li>
 
 <li>Draft of '2017-02-22'</li>
@@ -8998,6 +9000,134 @@ Insertion and find are $\log(N)$
 |insert     | O(n)  | O(log N) |
 |contains   | O(n)  | O(log N) |
 |remove     | O(n)  | O(log N) |</pre>
+</div>
+<div created="20170301140916310" creator="kylefeng" date="2017-03-01" modified="20170305213255292" modifier="kylefeng" tags="adt bst notes" title="2017-03-01 Dynamic Dictionary as Binary Search Tree" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>!! Lec 14
+
+* `insert(key, data)`
+* `find(key)`
+* `remove(key)`
+
+Java Map interface
+
+```java
+Map&lt;Integer, String&gt; m1 = new TreeMap&lt;&gt;()
+                          new HashMap&lt;&gt;()
+                          new LinkedHashMap()
+
+m1.put(10, &quot;Ten&quot;)
+m1.put(8, &quot;Eight&quot;)
+m1.get(10) -&gt; &quot;Ten&quot;
+m1.remove(8)
+```
+
+```java
+public interface  DD&lt;K extends Comparable&lt;? super K&gt;, D&gt; {
+    public void insert(K k, D d);
+    public D find(K k);
+    public void remove(K k);
+}
+```
+
+DD as Binary search tree
+
+```java
+private class DDasBST&lt;K, D&gt; implements DD&lt;K, D&gt; {
+    public BSTree&lt;K, D&gt; root;
+    public DDasBST() { root = null; }
+
+	// find()
+    public D find(K k) { return find(root, k); }
+    private D find(BSTree&lt;K,D&gt; t, K k) {
+        // Empty tree -&gt; null
+        if (t == null) return null;
+        int compRes = k.compareTo(t.key);
+        // Less than -&gt; find in left child
+        if (compRes &lt; 0) { return find(t.left, k); }
+        // Greater than -&gt; find in right child
+        else if (compRes &gt; 0) { return find(t.right, k); }
+        // Equal to -&gt; return data
+        else return data;
+    }
+    
+    // insert()
+    public void insert(K k, D d) { root = insert(BSTree&lt;K,D&gt; t, D d); }
+    private BSTree&lt;K,D&gt; insert(BSTree&lt;K,D&gt; t, D d) {
+    	// Empty tree -&gt; create new tree
+        if (t == null) { return new BSTree(k, d, null, null); }
+        int compRes = k.compareTo(t.key);
+        // Less than -&gt; insert in left child
+        if (compRes &lt; 0) { t.left = insert(t.left, k, d); }
+        // Greater than -&gt; insert in right child
+        else if (compRes &gt; 0) { t.right = insert(t.right, k, d); }
+        else t.data = d;
+    }
+    
+    // delete()
+    // Three cases:
+    // Tree has no children: easily delete
+    // Tree has 1 child: replace with child
+    // Tree has 2 children: ???
+    public void remove(K k) { root = remove(root, k); }
+    
+    // minVal(): Find smallest value in tree
+    // PRE: t != null
+    private BSTree&lt;K,D&gt; minVal(BSTree&lt;K,D&gt; t) {
+    	// No left child -&gt; return tree
+        if (t.left ==  null) { return t; }
+        // Otherwise, follow the left child down the rabbit hole
+        return minVal(t.left);
+    }
+    
+    private BSTree&lt;K,D&gt; remove(BSTRee&lt;K,D&gt; t, D d) {
+    	if (t == null) { return null; }
+        int compRes = k.compareTo(t.key);
+        // ? left
+        if (compRes &lt; 0) { t.left = remove(t.left, k);
+        // ? right
+        else if (compRes &gt; 0) { t.right = remove(t.right, k);
+        // ? equal
+        else {
+            // Note: you could turn the booleans to ints and add them the number of children, this makes it easier to read the code
+        	// No children
+            if (t.left == null &amp;&amp; t.right == null) { t = null; }
+            // 1 child (xor could be used too)
+            else if (t.left == null || t.right == null) { t.left = null ? t.right:t.left; }
+            // 2 children
+            else {
+            	// ? get minimum?
+            	BSTree&lt;K,D&gt; tmp = minVal(t.right);
+                // ? steal the key and data?
+                t.key = tmp.key; t.data = tmp.data;
+                // ??? something about right child being greater than the left, so the smallest right child is still greater than the left ?????
+                t.right = remove(t.right, tmp.key);
+                
+            }
+
+        }
+    }
+}
+```
+
+Ternary conditional:
+
+```java
+if (c) x = a;
+else x = b;
+```
+
+Can be shortened to:
+
+```java
+x = c ? a : b;
+```
+
+Full code samples:
+* [[L14-BSTree.java]]
+* [[L14-DD.java]]
+* [[L14-DDasBST.java]]
+
+Practice writing a recursive method that would return whether something is a binary search tree or not.</pre>
 </div>
 <div created="20170305082828632" creator="kylefeng" draft.of="2017-02-15.md Bucket Sort" draft.title="2017-02-15.md Bucket Sort" modified="20170305083417530" modifier="kylefeng" tags="notes todo alg" title="Draft of '2017-02-15.md Bucket Sort'" type="text/x-markdown" revision="0" bag="default">
 <pre>2017-02-15
