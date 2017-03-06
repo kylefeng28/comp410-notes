@@ -1,0 +1,15 @@
+created: 20170306023510765
+modified: 20170306023510765
+title: L13-Tree.java
+type: text/plain
+
+
+public class Tree<C> {
+	public C data;
+	public Tree<C> left, right;
+	public Tree(C item, Tree<C> l, Tree<C> r){ 
+		data = item; 
+		left = l; 
+		right = r;
+	}
+}

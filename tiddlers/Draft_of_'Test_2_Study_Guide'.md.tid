@@ -1,12 +1,12 @@
 created: 20170305083138092
 creator: kylefeng
-modified: 20170306020708290
+draft.of: Test 2 Study Guide
+draft.title: Test 2 Study Guide
+modified: 20170306015456160
 modifier: kylefeng
 tags: [[study guide]]
-title: Test 2 Study Guide
+title: Draft of 'Test 2 Study Guide'
 type: text/x-markdown
-
-- Recurrences?
 
 - Know O(n) sorting algorithms?
   - bucket sort

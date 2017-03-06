@@ -1,6 +1,6 @@
 created: 20170227145152773
 creator: kylefeng
-modified: 20170305231134576
+modified: 20170306023648409
 modifier: kylefeng
 tags: notes
 title: 2017-02-27 Binary Search Trees
@@ -59,3 +59,8 @@ Insertion and find are $\log(N)$
 | insert    | O(n)  | O(log N) |
 | contains  | O(n)  | O(log N) |
 | remove    | O(n)  | O(log N) |
+
+Code:
+
+- [L13-Main1.java](#L13-Main1.java)
+- [L13-Tree.java](#L13-Tree.java)

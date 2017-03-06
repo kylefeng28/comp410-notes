@@ -1,0 +1,53 @@
+created: 20170306023510773
+modified: 20170306023510773
+title: L13-Main1.java
+type: text/plain
+
+import java.util.Random;
+public class Main1 {
+	static Random r;
+
+	public static Tree<Integer> insert(Tree<Integer> t, Integer item){
+		if (t == null) return new Tree<Integer>(item, null, null);
+		if (r.nextDouble() <= 0.5) //Change this to get trees with different "skews"
+			t.left = insert(t.left, item);
+		else 
+			t.right = insert(t.right, item);
+		return t;
+		
+	}
+
+	public static Tree<Integer> genTree(int n){//Generates a "random" tree with n nodes
+		Tree<Integer> tree1 = null;
+		for (int i = 1; i <= n; i++) tree1 = insert(tree1, i);
+		return tree1;
+	}
+	
+	public static int height(Tree<Integer> tree){// Computes the height of the tree
+		if (tree == null) return -1;
+		return 1 + Math.max(height(tree.left), height(tree.right));
+	}
+	
+/*
+	public static int count(Tree<Integer> tree){//Counts the number of elements in it
+		//WRITE THIS
+	}
+	
+	public static void insertAtLeftmostLeaf(Tree<Integer> tree, Integer item){//Precond: not empty
+	   //WRITE THIS: Inserts as the left child of the left-most leaf in the tree
+	}
+
+	public static void insertAtRightmostLeaf(Tree<Integer> tree, Integer item){//Precond: not empty
+	   //WRITE THIS: Inserts as the right child of the right-most leaf in the tree
+
+	}
+
+*/	public static void main(String[] args) {
+		r = new Random();
+		Tree<Integer> tree1 = genTree(1);
+		for (int i=1; i<= 9; i++){ insertAtLeftmostLeaf(tree1, i); insertAtRightmostLeaf(tree1, i);};
+		System.out.println("Size  is\t" + count(tree1));
+		System.out.println("Height is\t" + height(tree1));
+	}
+
+}
