@@ -1,0 +1,77 @@
+created: 20170308142246783
+creator: kylefeng
+modified: 20170308151724278
+modifier: kylefeng
+tags: notes todo adt avl
+title: 2017-03-08 AVL Trees
+type: text/vnd.tiddlywiki
+
+Self-balancing AVL tree
+
+```
+public AVLTree<K, D> { 
+	K key;
+    D data
+    AVLTree<K, D> left, right;
+    int height;
+    
+    // Constructor
+    public AVLTree(K k, D d, AVLTree<K, D> l, AVLTree<K, D> r) {
+    	height = 1 + Math.max(height(l), height(r));
+    }
+    
+    // height() -> int
+	private int height(AVLTree<K, D> t) {
+		if (t == null) return -1;
+		return t.height;
+	}
+
+	// insert() -> void
+    // Exactly like a regular BST
+    public void insert(K k, D d) { root = insert(root, k, d); }
+    private AVLTree<K, D> insert(AVLTree<K, D> t, K k , D d) {
+		if (t == null) return new AVLTree<K, D>(k, d, null, null);
+		int cv = k.compareTo(t.key);
+		if (cv < 0) t.left = insert(t.left, k, d);
+        else if (cv > 0) t.right = insert(t.right, k, d);
+        else t.data = d;
+        return balance(t);
+    }
+   
+ 	// balance() -> AVLTree
+    public AVLTree<K, D> balance(K k, D d) {
+		// Empty tree -> return itself
+		if (t == null) return t;
+    	// Left subtree is too high
+        if (height(t.left) > height(t.right) + 1) {
+        	if (height(t.left.left) >= height(t.left.right)) t = rotateLeft(...) // ???
+			else t = ...
+        }
+        // Right subtree is too high
+        if (height(t.right) > height(t.left) + 1) {
+        	if (height(t.right.right) >= height(t.right.left)) t = ...
+			else t = ...
+        }
+        t.height = 1 + Math.max(height(t.left), height(t.right));
+    }
+    
+    private AVLTree<K, D> rotateWithLeftChild(AVLTree<K, D> k2) {
+		// ????
+		AVLTree<K, D> k1 = k2.left;
+        k2.left = k1.right;
+        k1.right = k2;
+        K1.right = k2;
+        k2.height = 1 + Math.max(height(k2.left), height(k2.right));
+        k1.height = 1 + Math.max(height(k1.left), height(k1.right));
+        return k1;
+	}
+}
+```
+
+- Tree rotation
+  - Only need to rotate when ???
+  - When you insert, you only need to rebalance at most once
+
+TODO from NBP
+
+Understand how AVL trees balance and rotate

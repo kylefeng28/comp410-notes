@@ -205,6 +205,8 @@ Error message and password prompt
 
 <li>2017-03-01 Dynamic Dictionary as Binary Search Tree</li>
 
+<li>2017-03-08 AVL Trees</li>
+
 <li>Draft of '$:/plugins/bj/plugins/marked'</li>
 
 <li>Draft of '$:/plugins/bj/plugins/marked/markdown.js'</li>
@@ -10537,6 +10539,77 @@ Full code samples:
 
 Practice writing a recursive method that would return whether something is a binary search tree or not.</pre>
 </div>
+<div created="20170308142246783" creator="kylefeng" modified="20170308151724278" modifier="kylefeng" tags="notes todo adt avl" title="2017-03-08 AVL Trees" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>Self-balancing AVL tree
+
+```
+public AVLTree&lt;K, D&gt; { 
+	K key;
+    D data
+    AVLTree&lt;K, D&gt; left, right;
+    int height;
+    
+    // Constructor
+    public AVLTree(K k, D d, AVLTree&lt;K, D&gt; l, AVLTree&lt;K, D&gt; r) {
+    	height = 1 + Math.max(height(l), height(r));
+    }
+    
+    // height() -&gt; int
+	private int height(AVLTree&lt;K, D&gt; t) {
+		if (t == null) return -1;
+		return t.height;
+	}
+
+	// insert() -&gt; void
+    // Exactly like a regular BST
+    public void insert(K k, D d) { root = insert(root, k, d); }
+    private AVLTree&lt;K, D&gt; insert(AVLTree&lt;K, D&gt; t, K k , D d) {
+		if (t == null) return new AVLTree&lt;K, D&gt;(k, d, null, null);
+		int cv = k.compareTo(t.key);
+		if (cv &lt; 0) t.left = insert(t.left, k, d);
+        else if (cv &gt; 0) t.right = insert(t.right, k, d);
+        else t.data = d;
+        return balance(t);
+    }
+   
+ 	// balance() -&gt; AVLTree
+    public AVLTree&lt;K, D&gt; balance(K k, D d) {
+		// Empty tree -&gt; return itself
+		if (t == null) return t;
+    	// Left subtree is too high
+        if (height(t.left) &gt; height(t.right) + 1) {
+        	if (height(t.left.left) &gt;= height(t.left.right)) t = rotateLeft(...) // ???
+			else t = ...
+        }
+        // Right subtree is too high
+        if (height(t.right) &gt; height(t.left) + 1) {
+        	if (height(t.right.right) &gt;= height(t.right.left)) t = ...
+			else t = ...
+        }
+        t.height = 1 + Math.max(height(t.left), height(t.right));
+    }
+    
+    private AVLTree&lt;K, D&gt; rotateWithLeftChild(AVLTree&lt;K, D&gt; k2) {
+		// ????
+		AVLTree&lt;K, D&gt; k1 = k2.left;
+        k2.left = k1.right;
+        k1.right = k2;
+        K1.right = k2;
+        k2.height = 1 + Math.max(height(k2.left), height(k2.right));
+        k1.height = 1 + Math.max(height(k1.left), height(k1.right));
+        return k1;
+	}
+}
+```
+
+- Tree rotation
+  - Only need to rotate when ???
+  - When you insert, you only need to rebalance at most once
+
+TODO from NBP
+
+Understand how AVL trees balance and rotate</pre>
+</div>
 <div author="JeffreyWilkinson" core-version="&gt;=5.1.11" created="20170305223156337" dependents="" description="alternative markdown" draft.of="$:/plugins/bj/plugins/marked" draft.title="$:/plugins/bj/plugins/marked" list="readme license" modified="20170305223855221" modifier="kylefeng" plugin-type="plugin" source="https://github.com/buggyj/Tw5-tools" title="Draft of '$:/plugins/bj/plugins/marked'" type="application/json" version="1.11.0" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -12489,11 +12562,13 @@ IX��&quot;rp��r�(��(��(��(��(��(��
 ����E�EPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPE�u�Ɵ�?�}�����M����5�;�l�m�c�����=h&amp;RQ��Ƽ��&lt;Zj�|r���2鋧G��n8�-$`Ɗ�T������&amp;f���xjߺ�?g������ލOOj?������ ��� cAp{��+濇�ƍ���'�[���$�/uƑ`������J�	a���JZ���(((�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� *��*�}KS�����6�y��$q&quot;��3 �My��� ��g�=�7�G�KMk�۩�����p�W=��/�+���h�o��F��x[����?���&lt;�g&quot;S�H� #.���v�D�ge�.�7����O�|s:������o�J�yitY$\n&lt;���+g���`�-}�X��w�����GJ�NҴ��PA����Y��,rI$��[4#ʵ
 (��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(����K�I�❡ycdY�0t�u�h���g�؏��&quot;�^��e����\H��*��8&quot;�(V9T.F��	�H䟧@   �(��cdQEQ@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@��</pre>
 </div>
-<div created="20170227150247871" modified="20170228040909864" tags="" title="Upcoming" revision="0" bag="default">
+<div created="20170227150247871" creator="kylefeng" modified="20170306023941299" modifier="kylefeng" tags="" title="Upcoming" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Test Monday 3/3
 PS3 Due Friday 3/3
 
-TODO: import notes</pre>
+TODO: import notes
+
+TODO lecture 2/22 rewrite code</pre>
 </div>
 
 </div>
