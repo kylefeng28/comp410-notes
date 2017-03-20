@@ -207,6 +207,8 @@ Error message and password prompt
 
 <li>2017-03-08 AVL Trees</li>
 
+<li>2017-03-20</li>
+
 <li>Draft of '$:/plugins/bj/plugins/marked'</li>
 
 <li>Draft of '$:/plugins/bj/plugins/marked/markdown.js'</li>
@@ -220,6 +222,8 @@ Error message and password prompt
 <li>Draft of '2017-02-13 Search Algorithms'</li>
 
 <li>Draft of '2017-02-15 Bucket Sort'</li>
+
+<li>Draft of '2017-03-20'</li>
 
 <li>Draft of 'L14-DDasBST.java'</li>
 
@@ -10610,6 +10614,69 @@ TODO from NBP
 
 Understand how AVL trees balance and rotate</pre>
 </div>
+<div created="20170320131159982" creator="kylefeng" modified="20170320141836417" modifier="kylefeng" tags="notes todo" title="2017-03-20" type="text/x-markdown" revision="0" bag="default">
+<pre>- Dynamic Dictionary (DD)
+  - `insert(k, d)`
+  - `find(k) -&gt; d`
+  - `remove(k)`
+
+- DD as Binary Search Tree
+  - Only for Comparables
+  - All implemented recursively
+    - Return { leaf, node w/ a single child, w/ 2 children }
+  - Runtime is $O(height)$
+    - Average: $height = log n$
+    - Worst case is $height = n$
+
+- AVL tree
+  - Maintain the hieight of each node
+  - Define a balance condition for each node; the height of its subtrees differ by at most 1
+  - If an operation violates the balance condition, rotate
+ 
+ 
+`insert` and `remove` are implemented as usual, but before the return there 
+
+```java
+void insert(K k, D, d) {
+    ...
+    
+    rebalance(t);
+    t.height = 1 + Math.max(height(t.left), height(t.right));
+    return;
+}
+```
+ 
+- 4 rotation cases:
+  - 1. LL: Inserted into left subtree of the left child of $\alpha$
+  - 2. RL: Inserted into right subtree of the left child of $\alpha$
+  - 3. LR: Inserted into left subtree of the right child of $\alpha$
+  - 4. RR: Inserted into right subtree of the right child of $\alpha$
+
+TODO: insert Figure 4.31
+
+- A single rotation fixes cases 1 and 4
+
+- Rebalancing is implemented with pointer manipulation
+- If no rebalancing is required, `rebalance()` does nothing
+
+TODO: insert Figure 4.35
+
+RL rotations?? TODO
+
+$$N(0) = 1$$
+$$N(1) = 2$$
+$$N(2) = 4$$
+$$N(3) = 7$$
+
+Recurrence:
+$$N(h) = N(h1) + N(h-2) + 1$$
+
+Similar to Fibonacci sequence, but grows even faster
+
+$$N(h) &gt; (\frac{3}{2})^2 - 1$$
+
+Practice: generate random numbers and draw an AVL tree</pre>
+</div>
 <div author="JeffreyWilkinson" core-version="&gt;=5.1.11" created="20170305223156337" dependents="" description="alternative markdown" draft.of="$:/plugins/bj/plugins/marked" draft.title="$:/plugins/bj/plugins/marked" list="readme license" modified="20170305223855221" modifier="kylefeng" plugin-type="plugin" source="https://github.com/buggyj/Tw5-tools" title="Draft of '$:/plugins/bj/plugins/marked'" type="application/json" version="1.11.0" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -12204,6 +12271,69 @@ _______ TODO
 root at `?` `0`
 children at `? + i?` `2*i` and `2*i + 1`
 </pre>
+</div>
+<div created="20170320131159982" creator="kylefeng" draft.of="2017-03-20" draft.title="2017-03-20" modified="20170320141831435" modifier="kylefeng" tags="notes" title="Draft of '2017-03-20'" type="text/x-markdown" revision="0" bag="default">
+<pre>- Dynamic Dictionary (DD)
+  - `insert(k, d)`
+  - `find(k) -&gt; d`
+  - `remove(k)`
+
+- DD as Binary Search Tree
+  - Only for Comparables
+  - All implemented recursively
+    - Return { leaf, node w/ a single child, w/ 2 children }
+  - Runtime is $O(height)$
+    - Average: $height = log n$
+    - Worst case is $height = n$
+
+- AVL tree
+  - Maintain the hieight of each node
+  - Define a balance condition for each node; the height of its subtrees differ by at most 1
+  - If an operation violates the balance condition, rotate
+ 
+ 
+`insert` and `remove` are implemented as usual, but before the return there 
+
+```java
+void insert(K k, D, d) {
+    ...
+    
+    rebalance(t);
+    t.height = 1 + Math.max(height(t.left), height(t.right));
+    return;
+}
+```
+ 
+- 4 rotation cases:
+  - 1. LL: Inserted into left subtree of the left child of $\alpha$
+  - 2. RL: Inserted into right subtree of the left child of $\alpha$
+  - 3. LR: Inserted into left subtree of the right child of $\alpha$
+  - 4. RR: Inserted into right subtree of the right child of $\alpha$
+
+TODO: insert Figure 4.31
+
+- A single rotation fixes cases 1 and 4
+
+- Rebalancing is implemented with pointer manipulation
+- If no rebalancing is required, `rebalance()` does nothing
+
+TODO: insert Figure 4.35
+
+RL rotations?? TODO
+
+$$N(0) = 1$$
+$$N(1) = 2$$
+$$N(2) = 4$$
+$$N(3) = 7$$
+
+Recurrence:
+$$N(h) = N(h1) + N(h-2) + 1$$
+
+Similar to Fibonacci sequence, but grows even faster
+
+$$N(h) &gt; (\frac{3}{2})^2 - 1$$
+
+Practice: generate random numbers and draw an AVL tree</pre>
 </div>
 <div created="20170305084424662" creator="kylefeng" draft.of="L14-DDasBST.java" draft.title="L14-DDasBST.java" modified="20170305084437024" modifier="kylefeng" tags="code" title="Draft of 'L14-DDasBST.java'" type="text/plain" revision="0" bag="default">
 <pre>// BST implementation of dynamic dictionaries
