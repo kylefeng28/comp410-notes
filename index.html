@@ -209,6 +209,10 @@ Error message and password prompt
 
 <li>2017-03-20</li>
 
+<li>2017-03-22</li>
+
+<li>2017-03-27 Hash Tables</li>
+
 <li>Draft of '$:/plugins/bj/plugins/marked'</li>
 
 <li>Draft of '$:/plugins/bj/plugins/marked/markdown.js'</li>
@@ -225,7 +229,11 @@ Error message and password prompt
 
 <li>Draft of '2017-03-20'</li>
 
+<li>Draft of '2017-03-22'</li>
+
 <li>Draft of 'L14-DDasBST.java'</li>
+
+<li>Draft of 'New Tiddler 1'</li>
 
 <li>Draft of 'New Tiddler'</li>
 
@@ -7968,9 +7976,8 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20170227145135463" creator="kylefeng" modified="20170305083136623" modifier="kylefeng" title="$:/DefaultTiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>[[Test 2 Study Guide]]
-Upcoming
+<div created="20170227145135463" creator="kylefeng" modified="20170322131255494" modifier="kylefeng" title="$:/DefaultTiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>Upcoming
 Notes</pre>
 </div>
 <div title="$:/isEncrypted" revision="0" bag="default">
@@ -9976,7 +9983,7 @@ exports[&quot;text/x-maruku&quot;] = MarkdownParser;
 <div created="20170227145109319" modified="20170227145125559" title="$:/SiteTitle" revision="0" bag="default">
 <pre>COMP 410</pre>
 </div>
-<div list="[[Test 2 Study Guide]] Upcoming Notes" title="$:/StoryList" revision="1" bag="default">
+<div list="Upcoming Notes" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json" revision="0" bag="default">
@@ -10676,6 +10683,26 @@ Similar to Fibonacci sequence, but grows even faster
 $$N(h) &gt; (\frac{3}{2})^2 - 1$$
 
 Practice: generate random numbers and draw an AVL tree</pre>
+</div>
+<div created="20170322131324486" creator="kylefeng" modified="20170322131846132" modifier="kylefeng" tags="notes" title="2017-03-22" type="text/x-markdown" revision="0" bag="default">
+<pre>```java
+public void remove(K k) { root = remove(k, root); }
+private AVLTree&lt;K, D&gt; remove(K k, AVLTree t) {
+	...
+    rebalance(t);
+    return t;
+}
+```
+
+Unlike insert, remove may have to rebalance multiple times. This does not change the runtime complexity, because rebalancing is constant time, and you rebalance at $\log n$ levels. The time it takes is longer, but the runtime is still $O(\log n)$.
+
+Lazy deletion. Only indicate that the node is deleted, but do not actually remove it until later.
+
+
+</pre>
+</div>
+<div created="20170327131132977" creator="kylefeng" modified="20170327141417125" modifier="kylefeng" tags="notes todo" title="2017-03-27 Hash Tables" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>TODO in jupyter notebook</pre>
 </div>
 <div author="JeffreyWilkinson" core-version="&gt;=5.1.11" created="20170305223156337" dependents="" description="alternative markdown" draft.of="$:/plugins/bj/plugins/marked" draft.title="$:/plugins/bj/plugins/marked" list="readme license" modified="20170305223855221" modifier="kylefeng" plugin-type="plugin" source="https://github.com/buggyj/Tw5-tools" title="Draft of '$:/plugins/bj/plugins/marked'" type="application/json" version="1.11.0" revision="0" bag="default">
 <pre>{
@@ -12335,6 +12362,28 @@ $$N(h) &gt; (\frac{3}{2})^2 - 1$$
 
 Practice: generate random numbers and draw an AVL tree</pre>
 </div>
+<div created="20170322131324486" creator="kylefeng" draft.of="2017-03-22" draft.title="2017-03-22" modified="20170322135744930" modifier="kylefeng" tags="notes" title="Draft of '2017-03-22'" type="text/x-markdown" revision="0" bag="default">
+<pre>```java
+public void remove(K k) { root = remove(k, root); }
+private AVLTree&lt;K, D&gt; remove(K k, AVLTree t) {
+	...
+    rebalance(t);
+    return t;
+}
+```
+
+Unlike insert, remove may have to rebalance multiple times. This does not change the runtime complexity, because rebalancing is constant time, and you rebalance at $\log n$ levels. The time it takes is longer, but the runtime is still $O(\log n)$.
+
+[Lazy deletion](https://en.wikipedia.org/wiki/Lazy_deletion). On remove, only indicate that the node is deleted, but do not actually remove it until later.
+
+ArrayList
+
+TODO &quot;Amortized&quot; analysis??? 
+
+BST
+AVL
+Splay trees</pre>
+</div>
 <div created="20170305084424662" creator="kylefeng" draft.of="L14-DDasBST.java" draft.title="L14-DDasBST.java" modified="20170305084437024" modifier="kylefeng" tags="code" title="Draft of 'L14-DDasBST.java'" type="text/plain" revision="0" bag="default">
 <pre>// BST implementation of dynamic dictionaries
 public class DDasBST&lt;K extends Comparable&lt;? super K&gt;, D&gt; implements DD&lt;K,D&gt;{
@@ -12395,6 +12444,16 @@ public class DDasBST&lt;K extends Comparable&lt;? super K&gt;, D&gt; implements 
 	}
 }
 </pre>
+</div>
+<div created="20170322131324486" creator="kylefeng" draft.of="New Tiddler 1" draft.title="2017-03-22" modified="20170322131731307" modifier="kylefeng" tags="notes" title="Draft of 'New Tiddler 1'" type="text/x-markdown" revision="0" bag="default">
+<pre>```java
+public void remove(K k) { root = remove(k, root); }
+private AVLTree&lt;K, D&gt; remove(K k, AVLTree t) {
+	
+}
+```
+
+Unlike insert, remove may have to rebalance multiple times. This does not change the runtime complexity, because rebalancing is constant time, and you rebalance at $\log(n)$ levels. The time it takes is longer, but the runtime is still $O(log</pre>
 </div>
 <div created="20170305083422549" creator="kylefeng" draft.of="New Tiddler" draft.title="Resources" modified="20170305083425862" modifier="kylefeng" tags="" title="Draft of 'New Tiddler'" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
@@ -12692,13 +12751,11 @@ IX��&quot;rp��r�(��(��(��(��(��(��
 ����E�EPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPE�u�Ɵ�?�}�����M����5�;�l�m�c�����=h&amp;RQ��Ƽ��&lt;Zj�|r���2鋧G��n8�-$`Ɗ�T������&amp;f���xjߺ�?g������ލOOj?������ ��� cAp{��+濇�ƍ���'�[���$�/uƑ`������J�	a���JZ���(((�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� (�� *��*�}KS�����6�y��$q&quot;��3 �My��� ��g�=�7�G�KMk�۩�����p�W=��/�+���h�o��F��x[����?���&lt;�g&quot;S�H� #.���v�D�ge�.�7����O�|s:������o�J�yitY$\n&lt;���+g���`�-}�X��w�����GJ�NҴ��PA����Y��,rI$��[4#ʵ
 (��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(��(����K�I�❡ycdY�0t�u�h���g�؏��&quot;�^��e����\H��*��8&quot;�(V9T.F��	�H䟧@   �(��cdQEQ@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@��</pre>
 </div>
-<div created="20170227150247871" creator="kylefeng" modified="20170306023941299" modifier="kylefeng" tags="" title="Upcoming" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>Test Monday 3/3
-PS3 Due Friday 3/3
+<div created="20170227150247871" creator="kylefeng" modified="20170322131320342" modifier="kylefeng" tags="" title="Upcoming" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>TODO: import notes
 
-TODO: import notes
-
-TODO lecture 2/22 rewrite code</pre>
+TODO lecture 2/22 rewrite code
+TODO lecture 3/20 fill in blanks</pre>
 </div>
 
 </div>

@@ -1,0 +1,18 @@
+created: 20170322131324486
+creator: kylefeng
+draft.of: New Tiddler 1
+draft.title: 2017-03-22
+modified: 20170322131731307
+modifier: kylefeng
+tags: notes
+title: Draft of 'New Tiddler 1'
+type: text/x-markdown
+
+```java
+public void remove(K k) { root = remove(k, root); }
+private AVLTree<K, D> remove(K k, AVLTree t) {
+	
+}
+```
+
+Unlike insert, remove may have to rebalance multiple times. This does not change the runtime complexity, because rebalancing is constant time, and you rebalance at $\log(n)$ levels. The time it takes is longer, but the runtime is still $O(log

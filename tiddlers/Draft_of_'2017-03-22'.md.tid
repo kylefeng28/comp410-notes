@@ -1,0 +1,30 @@
+created: 20170322131324486
+creator: kylefeng
+draft.of: 2017-03-22
+draft.title: 2017-03-22
+modified: 20170322135744930
+modifier: kylefeng
+tags: notes
+title: Draft of '2017-03-22'
+type: text/x-markdown
+
+```java
+public void remove(K k) { root = remove(k, root); }
+private AVLTree<K, D> remove(K k, AVLTree t) {
+	...
+    rebalance(t);
+    return t;
+}
+```
+
+Unlike insert, remove may have to rebalance multiple times. This does not change the runtime complexity, because rebalancing is constant time, and you rebalance at $\log n$ levels. The time it takes is longer, but the runtime is still $O(\log n)$.
+
+[Lazy deletion](https://en.wikipedia.org/wiki/Lazy_deletion). On remove, only indicate that the node is deleted, but do not actually remove it until later.
+
+ArrayList
+
+TODO "Amortized" analysis??? 
+
+BST
+AVL
+Splay trees
